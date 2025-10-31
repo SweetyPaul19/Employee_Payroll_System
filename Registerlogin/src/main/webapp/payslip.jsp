@@ -1,0 +1,211 @@
+<%@ page import="in.sp.backend.Payroll" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    Payroll payslip = (Payroll) request.getAttribute("payslip");
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payslip | PAY ZEN</title>
+<link rel="icon" href="assets/favicon.ico">
+<style>
+    body {
+        font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+        background-color: #f2f4f7;
+        margin: 0;
+        padding: 40px;
+        color: #222;
+    }
+
+    .payslip-wrapper {
+        max-width: 850px;
+        margin: auto;
+        background: #fff;
+        border: 1px solid #d6d6d6;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        padding: 50px 60px;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 3px solid #004aad;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+    }
+
+    .header .company-info {
+        text-align: left;
+    }
+
+    .header h1 {
+        color: #004aad;
+        margin: 0;
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    .header p {
+        margin: 4px 0;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .payslip-title {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #004aad;
+        text-transform: uppercase;
+        margin: 20px 0;
+    }
+
+    .info-section {
+        display: flex;
+        justify-content: space-between;
+        background: #f8faff;
+        border: 1px solid #dce6ff;
+        padding: 15px 20px;
+        border-radius: 6px;
+        margin-bottom: 25px;
+    }
+
+    .info-section div {
+        width: 48%;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .info-section b {
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th, td {
+        padding: 12px 10px;
+        border: 1px solid #ccc;
+        font-size: 15px;
+    }
+
+    th {
+        background-color: #f1f5ff;
+        color: #333;
+        text-align: left;
+    }
+
+    td {
+        color: #000;
+    }
+
+    .highlight {
+        background-color: #e7f1ff;
+        font-weight: bold;
+    }
+
+    .footer {
+        text-align: right;
+        font-size: 13px;
+        color: #555;
+        margin-top: 40px;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+    }
+
+    .signature {
+        margin-top: 60px;
+        text-align: right;
+    }
+
+    .signature p {
+        font-size: 14px;
+        margin-bottom: 50px;
+    }
+
+    .signature span {
+        display: inline-block;
+        border-top: 1px solid #333;
+        width: 200px;
+        text-align: center;
+        font-size: 13px;
+        color: #333;
+        margin-top: 5px;
+    }
+
+    .print-btn {
+        display: block;
+        margin: 30px auto;
+        background: #004aad;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 15px;
+        transition: background 0.3s;
+    }
+
+    .print-btn:hover {
+        background: #00327d;
+    }
+</style>
+</head>
+
+<body>
+<div class="payslip-wrapper">
+    <div class="header">
+        <div class="company-info">
+            <h1>PAY ZEN Pvt. Ltd.</h1>
+            <p>Employee Payroll Department</p>
+            <p>Email: hr@payzen.in | Phone: +91-9876543210</p>
+        </div>
+        <div>
+            <img src="images/logo.png" alt="Company Logo" height="60">
+        </div>
+    </div>
+
+    <div class="payslip-title">Employee Payslip</div>
+
+    <% if (payslip != null) { %>
+    <div class="info-section">
+        <div>
+            <b>Employee ID:</b> <%= payslip.getEmployeeId() %><br>
+            <b>Employee Name:</b> <%= payslip.getEmployeeName() %><br>
+            <b>Pay Period:</b> <%= payslip.getPaymentDate().getMonth() %> <%= payslip.getPaymentDate().getYear() %>
+        </div>
+        <div>
+            <b>Date of Issue:</b> <%= payslip.getPaymentDate() %><br>
+			<b>Department:</b> <%= payslip.getDepartment() %>
+        </div>
+    </div>
+
+    <table>
+        <tr><th>Description</th><th>Amount (₹)</th></tr>
+        <tr><td>Basic Salary</td><td><%= String.format("%.2f", payslip.getBasicSalary()) %></td></tr>
+        <tr><td>Allowances</td><td><%= String.format("%.2f", payslip.getAllowances()) %></td></tr>
+        <tr><td>Deductions</td><td><%= String.format("%.2f", payslip.getDeductions()) %></td></tr>
+        <tr class="highlight"><td>Net Salary</td><td><%= String.format("%.2f", payslip.getNetSalary()) %></td></tr>
+    </table>
+
+    <div class="signature">
+        <p><b>Authorized HR Signature</b></p>
+        <span>HR Manager</span>
+    </div>
+    <% } else { %>
+        <p style="text-align:center; color:red;">No payslip data found!</p>
+    <% } %>
+
+    <button class="print-btn" onclick="window.print()">🖨️ Print Payslip</button>
+
+    <div class="footer">
+        Confidential Document | Generated by PAY ZEN Payroll System © 2025
+    </div>
+</div>
+</body>
+</html>

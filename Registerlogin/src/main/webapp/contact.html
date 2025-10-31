@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | PAY ZEN - Employee Payroll System</title>
+  <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f8fbff;
+      color: #333;
+    }
+
+    /* Navbar */
+    header {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      padding: 18px 0;
+      color: white;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .navbar {
+      width: 90%;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .logo {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s ease;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    .navbar ul li a:hover,
+    .navbar ul li a.active {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      max-width: 1100px;
+      margin: 140px auto 70px;
+      background: white;
+      border-radius: 18px;
+      padding: 60px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .contact-info {
+      flex: 1 1 40%;
+      text-align: left;
+    }
+
+    .contact-info h1 {
+      color: #1e3c72;
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      color: #555;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .info-box {
+      margin-bottom: 20px;
+    }
+
+    .info-box i {
+      color: #1e3c72;
+      font-size: 1.3rem;
+      margin-right: 12px;
+    }
+
+    .info-box span {
+      font-weight: 500;
+      color: #333;
+    }
+
+    /* Form */
+    .contact-form {
+      flex: 1 1 50%;
+      text-align: left;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1.5px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #1e3c72;
+      box-shadow: 0 0 6px rgba(30,60,114,0.3);
+      outline: none;
+    }
+
+    textarea {
+      resize: none;
+      height: 130px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      border: none;
+      padding: 14px 36px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s ease;
+      width: fit-content;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #2a5298, #1e3c72);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #1e3c72;
+      color: white;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .contact-section {
+        flex-direction: column;
+        padding: 40px 25px;
+      }
+
+      .contact-info, .contact-form {
+        flex: 1 1 100%;
+        text-align: center;
+      }
+
+      .info-box {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <h2 class="logo">PAY ZEN</h2>
+      <ul>
+      <li><a href="index1.jsp">Dashboard</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a class="active" href="contact.html">Contact Us</a></li>
+        
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h1>Get in Touch</h1>
+      <p>Have a question about payroll, account setup, or support?  
+      Our <strong>PayZen Support Team</strong> is always ready to help you.</p>
+
+      <div class="info-box"><i class="fas fa-map-marker-alt"></i> <span>Corporate Office:</span> PayZen Technologies Pvt. Ltd., Tower 4, Tech Park, Bengaluru, India</div>
+      <div class="info-box"><i class="fas fa-envelope"></i> <span>Email:</span> support@payzen.in</div>
+      <div class="info-box"><i class="fas fa-phone"></i> <span>Phone:</span> +91 98765 43210</div>
+      <div class="info-box"><i class="fas fa-clock"></i> <span>Office Hours:</span> Mon - Fri, 9:00 AM - 6:00 PM</div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <form>
+        <input type="text" placeholder="Your Full Name" required />
+        <input type="email" placeholder="Your Email Address" required />
+        <textarea placeholder="Type your message here..." required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 PAY ZEN | Employee Payroll System. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
