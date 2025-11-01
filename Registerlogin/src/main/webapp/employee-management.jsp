@@ -221,6 +221,7 @@
       <th>Department</th>
       <th>Position</th>
       <th>Salary</th>
+      <th>Actions</th> <!-- NEW COLUMN -->
     </tr>
   </thead>
   <tbody>
@@ -237,6 +238,14 @@
       <td><%= rs.getString("department") %></td>
       <td><%= rs.getString("position") %></td>
       <td>₹<%= rs.getDouble("salary") %></td>
+      <td>
+        <!-- EDIT & DELETE BUTTONS -->
+        <a href="edit-employee.jsp?id=<%= rs.getInt("id") %>" style="color:green;">Edit</a> |
+        <a href="deleteEmployee?id=<%= rs.getInt("id") %>" style="color:red;"
+           onclick="return confirm('Are you sure you want to delete this employee?');">
+           Delete
+        </a>
+      </td>
     </tr>
     <%
       }
