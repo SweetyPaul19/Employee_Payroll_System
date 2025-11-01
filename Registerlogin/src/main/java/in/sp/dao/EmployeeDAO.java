@@ -153,19 +153,29 @@ public class EmployeeDAO {
 
     // Delete employee
     public boolean deleteEmployee(int id) {
-        String sql = "DELETE FROM employees WHERE id=?";
-        try (Connection con = DBConnect.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+    String deletePayrollSQL = "DELETE FROM payroll WHERE employee_id=?";
+    String deleteEmployeeSQL = "DELETE FROM employees WHERE id=?";
+    try (Connection con = DBConnect.getConnection()) {
 
-            ps.setInt(1, id);
-            int rows = ps.executeUpdate();
-            return rows > 0;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+        // First delete payroll entries linked to this employee
+        try (PreparedStatement ps1 = con.prepareStatement(deletePayrollSQL)) {
+            ps1.setInt(1, id);
+            ps1.executeUpdate();
         }
+
+        // Then delete employee
+        try (PreparedStatement ps2 = con.prepareStatement(deleteEmployeeSQL)) {
+            ps2.setInt(1, id);
+            int rows = ps2.executeUpdate();
+            return rows > 0;
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
     }
+}
+
 
 //Get employee's basic salary by ID
 public double getEmployeeSalary(int id) {
