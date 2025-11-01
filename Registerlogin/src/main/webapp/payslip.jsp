@@ -166,7 +166,7 @@
             <p>Email: hr@payzen.in | Phone: +91-9876543210</p>
         </div>
         <div>
-            <img src="images/logo.png" alt="Company Logo" height="60">
+            <img src="images/employee.png" alt="Company Logo" height="60">
         </div>
     </div>
 
