@@ -111,30 +111,45 @@ public class EmployeeDAO {
 
 
     // Update employee
-    public boolean updateEmployee(Employee emp) {
-        String sql = "UPDATE employees SET first_name=?, last_name=?, email=?, phone=?, department=?, position=?, salary=?, hire_date=?, status=? WHERE id=?";
-        try (Connection con = DBConnect.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+	// ✅ Safe updateEmployee method
+	public boolean updateEmployee(Employee emp) {
+	    String sql = "UPDATE employees SET first_name=?, last_name=?, email=?, phone=?, department=?, position=?, salary=?, hire_date=?, status=? WHERE id=?";
+	    try (Connection con = DBConnect.getConnection();
+	         PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setString(1, emp.getFirstName());
-            ps.setString(2, emp.getLastName());
-            ps.setString(3, emp.getEmail());
-            ps.setString(4, emp.getPhone());
-            ps.setString(5, emp.getDepartment());
-            ps.setString(6, emp.getPosition());
-            ps.setDouble(7, emp.getSalary());
-            ps.setDate(8, Date.valueOf(emp.getHireDate()));
-            ps.setString(9, emp.getStatus());
-            ps.setInt(10, emp.getId());
+	        ps.setString(1, emp.getFirstName());
+	        ps.setString(2, emp.getLastName());
+	        ps.setString(3, emp.getEmail());
+	        ps.setString(4, emp.getPhone());
+	        ps.setString(5, emp.getDepartment());
+	        ps.setString(6, emp.getPosition());
+	        ps.setDouble(7, emp.getSalary());
 
-            int rows = ps.executeUpdate();
-            return rows > 0;
+	        // ✅ FIX: handle null hire_date safely
+	        if (emp.getHireDate() != null) {
+	            ps.setDate(8, Date.valueOf(emp.getHireDate()));
+	        } else {
+	            ps.setNull(8, java.sql.Types.DATE);
+	        }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+	        // ✅ handle null status safely too
+	        if (emp.getStatus() != null) {
+	            ps.setString(9, emp.getStatus());
+	        } else {
+	            ps.setNull(9, java.sql.Types.VARCHAR);
+	        }
+
+	        ps.setInt(10, emp.getId());
+
+	        int rows = ps.executeUpdate();
+	        return rows > 0;
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+
 
     // Delete employee
     public boolean deleteEmployee(int id) {
