@@ -47,18 +47,39 @@ public class RunPayrollServlet extends HttpServlet {
             Employee emp = employeeDAO.getEmployeeById(employeeId);
 
             double basicSalary = emp.getSalary();
-            double netSalary = basicSalary + allowances - deductions;
 
-            // ✅ Create Payroll object with department and employee name
-            Payroll payroll = new Payroll();
-            payroll.setEmployeeId(employeeId);
-            payroll.setEmployeeName(emp.getFirstName() + " " + emp.getLastName());
-            payroll.setDepartment(emp.getDepartment()); // ✅ dynamic department
-            payroll.setBasicSalary(basicSalary);
-            payroll.setAllowances(allowances);
-            payroll.setDeductions(deductions);
-            payroll.setNetSalary(netSalary);
-            payroll.setPaymentDate(paymentDate);
+         // ✅ HRA (House Rent Allowance) = 20% of basic
+         double hra = 0.20 * basicSalary;
+
+         // ✅ DA (Dearness Allowance) = 10% of basic
+         double da = 0.10 * basicSalary;
+
+         // ✅ Example leave-based deduction
+         // Suppose total allowed leaves = 30 per month
+         int totalLeaves = 30;
+         int leavesTaken = Integer.parseInt(req.getParameter("leavesTaken"));
+         double perDaySalary = basicSalary / totalLeaves;
+         double leaveDeduction = perDaySalary * leavesTaken;
+
+         // ✅ Calculate final Net Salary
+      // ✅ Calculate final Net Salary
+         double netSalary = basicSalary + hra + da + allowances - deductions - leaveDeduction;
+
+         // ✅ Create Payroll object
+         Payroll payroll = new Payroll();
+         payroll.setEmployeeId(employeeId);
+         payroll.setEmployeeName(emp.getFirstName() + " " + emp.getLastName());
+         payroll.setDepartment(emp.getDepartment());
+         payroll.setBasicSalary(basicSalary);
+         payroll.setHra(hra);
+         payroll.setDa(da);
+         payroll.setAllowances(allowances);
+         payroll.setDeductions(deductions + leaveDeduction);
+         payroll.setLeavesTaken(leavesTaken);           // ✅ Add this
+         payroll.setLeaveDeduction(leaveDeduction);     // ✅ Add this
+         payroll.setNetSalary(netSalary);
+         payroll.setPaymentDate(paymentDate);
+
 
             boolean success = new PayrollDAO().addPayroll(payroll);
 
