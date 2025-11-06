@@ -103,30 +103,27 @@
         </div>
     <% } %>
 
+    <!-- ==================== PAYROLL FORM ==================== -->
     <form action="runPayroll" method="post">
         <label for="employeeId">Select Employee:</label>
         <select name="employeeId" required>
-    <option value="">-- Choose Employee --</option>
-    <%
-        java.util.List<in.sp.backend.Employee> empList =
-            (java.util.List<in.sp.backend.Employee>) request.getAttribute("employeeList");
-        if (empList != null && !empList.isEmpty()) {
-            for (in.sp.backend.Employee emp : empList) {
-    %>
-                <option value="<%= emp.getId() %>">
-                
-                    <%= emp.getFirstName() + " " + emp.getLastName() %>
-                </option>
-    <%
-            }
-        } else {
-    %>
-        <option disabled>No employees found</option>
-    <%
-        }
-    %>
-</select>
-
+            <option value="">-- Choose Employee --</option>
+            <%
+                if (employeeList != null && !employeeList.isEmpty()) {
+                    for (Employee emp : employeeList) {
+            %>
+                        <option value="<%= emp.getId() %>">
+                            <%= emp.getFirstName() + " " + emp.getLastName() %> (Dept: <%= emp.getDepartment() %>)
+                        </option>
+            <%
+                    }
+                } else {
+            %>
+                <option disabled>No employees found</option>
+            <%
+                }
+            %>
+        </select>
 
         <label for="allowances">Allowances:</label>
         <input type="number" name="allowances" step="0.01" placeholder="Enter Allowances">
@@ -134,55 +131,65 @@
         <label for="deductions">Deductions:</label>
         <input type="number" name="deductions" step="0.01" placeholder="Enter Deductions">
 
+        <label for="leavesTaken">Leaves Taken:</label>
+        <input type="number" name="leavesTaken" min="0" max="30" placeholder="Enter Leaves Taken">
+
         <label for="paymentDate">Payment Date:</label>
         <input type="date" name="paymentDate" required>
 
         <button type="submit">Process Payroll</button>
     </form>
 
+    <!-- ==================== PAYROLL TABLE ==================== -->
     <h3>🧾 Processed Payroll Records</h3>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Employee</th>
+                <th>Department</th>
                 <th>Basic Salary</th>
+                <th>HRA</th>
+                <th>DA</th>
                 <th>Allowances</th>
                 <th>Deductions</th>
+                <th>Leaves</th>
                 <th>Net Salary</th>
                 <th>Payment Date</th>
-                <th>Action</th> <!-- ✅ Added -->
+                <th>Action</th>
             </tr>
-            
         </thead>
         <tbody>
-<%
-    if (payrollList != null && !payrollList.isEmpty()) {
-        for (Payroll p : payrollList) {
-%>
-    <tr>
-        <td><%= p.getId() %></td>
-        <td><%= p.getEmployeeName() %></td>
-        <td>₹<%= String.format("%.2f", p.getBasicSalary()) %></td>
-        <td>₹<%= String.format("%.2f", p.getAllowances()) %></td>
-        <td>₹<%= String.format("%.2f", p.getDeductions()) %></td>
-        <td><b>₹<%= String.format("%.2f", p.getNetSalary()) %></b></td>
-        <td><%= p.getPaymentDate() %></td>
-        <td>
-            <a href="generatePayslip?employeeId=<%= p.getEmployeeId() %>" 
-               style="color: blue; text-decoration: underline;">View Payslip</a>
-        </td>
-    </tr>
-<%
-        }
-    } else {
-%>
-    <tr><td colspan="8">No Payroll Records Found</td></tr>
-<%
-    }
-%>
-</tbody>
-
+        <%
+            if (payrollList != null && !payrollList.isEmpty()) {
+                for (Payroll p : payrollList) {
+        %>
+            <tr>
+                <td><%= p.getId() %></td>
+                <td><%= p.getEmployeeName() %></td>
+                <td><%= p.getDepartment() %></td>
+                <td>₹<%= String.format("%.2f", p.getBasicSalary()) %></td>
+                <td>₹<%= String.format("%.2f", p.getHra()) %></td>
+                <td>₹<%= String.format("%.2f", p.getDa()) %></td>
+                <td>₹<%= String.format("%.2f", p.getAllowances()) %></td>
+                <td>₹<%= String.format("%.2f", p.getDeductions()) %></td>
+                <td><%= p.getLeavesTaken() %></td>
+                <td><b>₹<%= String.format("%.2f", p.getNetSalary()) %></b></td>
+                <td><%= p.getPaymentDate() %></td>
+                <td>
+                    <a href="generatePayslip?employeeId=<%= p.getEmployeeId() %>"
+                       style="color: blue; text-decoration: underline;">View Payslip</a>
+                </td>
+            </tr>
+        <%
+                }
+            } else {
+        %>
+            <tr><td colspan="12">No Payroll Records Found</td></tr>
+        <%
+            }
+        %>
+        </tbody>
     </table>
 </div>
 </body>
