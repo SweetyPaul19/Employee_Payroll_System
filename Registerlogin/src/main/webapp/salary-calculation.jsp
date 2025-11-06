@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <title>Salary Calculator | PAY ZEN</title>
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/style.css">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -45,7 +44,7 @@
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      width: 350px;
+      width: 400px;
       text-align: center;
     }
 
@@ -91,16 +90,6 @@
       color: #2f3640;
       font-weight: bold;
     }
-
-    footer {
-      text-align: center;
-      background-color: #2f3640;
-      color: white;
-      padding: 10px 0;
-      position: relative;
-      bottom: 0;
-      width: 100%;
-    }
   </style>
 </head>
 <body>
@@ -111,8 +100,8 @@
       <a href="employee-management.jsp">Employee Management</a>
       <a href="salary-calculation.jsp" class="active">Salary Calculator</a>
       <a href="runPayroll">Run Payroll</a>
-       <a href="about.html">About</a>
-        <a href="contact.html">Contact Us</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact Us</a>
     </nav>
   </header>
 
@@ -121,13 +110,16 @@
       <h2>Calculate Net Pay</h2>
       <form action="calculateSalary" method="post">
         <input type="number" step="0.01" name="basic" placeholder="Basic Salary" required>
-        <input type="number" step="0.01" name="bonus" placeholder="Bonus" required>
+        <input type="number" step="0.01" name="hra" placeholder="HRA" required>
+        <input type="number" step="0.01" name="da" placeholder="DA" required>
+        <input type="number" step="0.01" name="otherAllowance" placeholder="Other Allowances" required>
         <input type="number" step="0.01" name="deductions" placeholder="Deductions" required>
+        <input type="number" name="totalDays" placeholder="Total Working Days" required>
+        <input type="number" name="workedDays" placeholder="Worked Days" required>
         <button type="submit">Calculate</button>
       </form>
 
       <% 
-        // Display result if present from servlet
         String netPay = (String) request.getAttribute("netPay");
         if (netPay != null) {
       %>
