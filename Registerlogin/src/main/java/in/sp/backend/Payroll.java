@@ -12,6 +12,12 @@ public class Payroll {
     private LocalDate paymentDate;
     private String employeeName;
     private String department;
+    private double hra;
+    private double da;
+    private int totalLeaves;
+    private int leavesTaken;
+    private double leaveDeduction;
+
 
     public Payroll() {}
 
@@ -55,4 +61,20 @@ public class Payroll {
     
     public String getDepartment() { return department; }   // ✅ getter
     public void setDepartment(String department) { this.department = department; }
+    
+    public double getHra() { return hra; }
+    public void setHra(double hra) { this.hra = hra; }
+
+    public double getDa() { return da; }
+    public void setDa(double da) { this.da = da; }
+
+    public int getTotalLeaves() { return totalLeaves; }
+    public void setTotalLeaves(int totalLeaves) { this.totalLeaves = totalLeaves; }
+
+    public int getLeavesTaken() { return leavesTaken; }
+    public void setLeavesTaken(int leavesTaken) { this.leavesTaken = leavesTaken; }
+
+    public double getLeaveDeduction() { return leaveDeduction; }
+    public void setLeaveDeduction(double leaveDeduction) { this.leaveDeduction = leaveDeduction; }
+
 }
