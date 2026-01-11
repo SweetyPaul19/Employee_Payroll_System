@@ -27,8 +27,8 @@ The Employee Payroll Management System is a Java-based web application that mana
 - Net Salary = Gross Salary − Deductions
 
 ## Project Structure
-Registerlogin/
-├── src/
+>Registerlogin/
+>├── src/
 │ └── main/
 │ └── webapp/
 │ ├── images/
