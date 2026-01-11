@@ -28,7 +28,6 @@ The Employee Payroll Management System is a Java-based web application that mana
 
 ## Project Structure
 Registerlogin/
-│
 ├── src/
 │ └── main/
 │ └── webapp/
@@ -36,7 +35,6 @@ Registerlogin/
 │ │ ├── employee.png
 │ │ ├── logo.png
 │ │ └── payroll-illustration.png
-│ │
 │ ├── admin-login.jsp
 │ ├── dashboard.jsp
 │ ├── employee-management.jsp
@@ -52,9 +50,7 @@ Registerlogin/
 │
 ├── build/
 │ └── classes/
-│ └── in/
-│ └── sp/
-│ └── backend/
+│ └── in/sp/backend/
 │ ├── Admin.class
 │ ├── Employee.class
 │ ├── Payroll.class
@@ -66,12 +62,11 @@ Registerlogin/
 ├── .settings/
 └── README.md
 
-
 ## How to Run
-1. Import the project into Eclipse
-2. Configure the MySQL database and update credentials
-3. Add the MySQL JDBC Connector
-4. Deploy the project on Apache Tomcat
+1. Import the project into Eclipse  
+2. Configure the MySQL database and update credentials  
+3. Add the MySQL JDBC Connector  
+4. Deploy the project on Apache Tomcat  
 5. Run the application in a web browser
 
 ## Author
