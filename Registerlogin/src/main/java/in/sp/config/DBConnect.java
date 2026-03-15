@@ -11,7 +11,7 @@ public class DBConnect {
     // Database credentials
     private static final String URL = "jdbc:mysql://localhost:3306/employees";
     private static final String USER = "root";       
-    private static final String PASSWORD = "";   
+    private static final String PASSWORD = ""; // change this
 
     // Get database connection
     public static Connection getConnection() {
