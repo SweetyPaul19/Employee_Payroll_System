@@ -100,7 +100,19 @@ Registerlogin/
 ---
 
 ## 📸 Screenshots
-> Add screenshots here (Dashboard, Payslip, Login Page, etc.)
+
+**Login Page**
+> <img width="1280" height="617" alt="image" src="https://github.com/user-attachments/assets/bb234110-8370-423d-a1f0-bf76c4b6f53c" />
+**Dashboard**
+> <img width="1280" height="622" alt="image" src="https://github.com/user-attachments/assets/1309587b-863b-4d44-a9f1-217f07c6c990" />
+**Registration Form**
+> <img width="1280" height="616" alt="image" src="https://github.com/user-attachments/assets/e55cb801-15b4-44c8-880f-811899e34ae9" />
+**Payroll**
+> <img width="1280" height="616" alt="image" src="https://github.com/user-attachments/assets/fda56d51-6a5e-4b28-b991-4157edd499cf" />
+**Salary Calculator**
+> <img width="1280" height="618" alt="image" src="https://github.com/user-attachments/assets/3ac1a310-71fb-4e78-9d20-07a801462d20" />
+**Employee Payslip**
+> <img width="1280" height="616" alt="image" src="https://github.com/user-attachments/assets/c971b33e-0006-482f-83d0-2c551986f0d7" />
 
 ---
 
@@ -115,11 +127,6 @@ Registerlogin/
 
 ## 🤝 Contribution
 Contributions are welcome! Feel free to fork this repository and submit pull requests.
-
----
-
-## 📄 License
-This project is open-source and available under the **MIT License**.
 
 ---
 
