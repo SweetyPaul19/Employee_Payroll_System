@@ -131,4 +131,4 @@ Contributions are welcome! Feel free to fork this repository and submit pull req
 ---
 
 ## 👨‍💻 Author
-Made with ❤️ by **Sweety**
+Made with love❤️ by **Sweety**
