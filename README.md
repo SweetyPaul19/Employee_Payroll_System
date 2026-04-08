@@ -130,5 +130,11 @@ Contributions are welcome! Feel free to fork this repository and submit pull req
 
 ---
 
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
+
+---
+
 ## 👨‍💻 Author
 Made with love❤️ by **Sweety**
